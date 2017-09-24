@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "233382462186",
+    "firebase_url": "https://mptruck-10e40.firebaseio.com",
+    "project_id": "mptruck-10e40",
+    "storage_bucket": "mptruck-10e40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233382462186:android:9a500d9f9d9537cc",
+        "android_client_info": {
+          "package_name": "com.ycce.mptruck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233382462186-rinlv78qdhn7sahre4vl12ha4tau8f47.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ycce.mptruck",
+            "certificate_hash": "d9d3c3a3d23d9232a44c271779d0b4318705854a"
+          }
+        },
+        {
+          "client_id": "233382462186-56vsc8lsjnlrqvdur8bles6a92b97fl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXLP1y6_gH5kQx8ocf7z7mtoFftM46qOY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233382462186-56vsc8lsjnlrqvdur8bles6a92b97fl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
