@@ -41,6 +41,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -393,16 +394,14 @@ public class OTP extends AppCompatActivity implements
               if(checkInDatabase(user)) {
                   mPhoneNumberViews.setVisibility(View.GONE);
                   mSignedInViews.setVisibility(View.VISIBLE);
-              }else{
-                startActivity(new Intent(this,MainActivity.class));
-            }
+              }
             //mStatusText.setText(R.string.signed_in);
             //mDetailText.setText(getString(R.string.firebase_status_fmt, user.getUid()));
         }
     }
 
-    private boolean checkInDatabase(FirebaseUser user) {
-        final int[] flag = {0};
+    public boolean checkInDatabase(FirebaseUser user) {
+
         try {
             databaseReference1 = firebaseDatabase.getReference().child("user").child(user.getUid());
             databaseReference1.addValueEventListener(new ValueEventListener() {
@@ -410,9 +409,12 @@ public class OTP extends AppCompatActivity implements
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     HashMap<String, String> map = (HashMap<String, String>) dataSnapshot.getValue();
                     if(map !=null){
+                        Log.d("Inside Datasnapshot","1");
                      Set<String> key = map.keySet();
                     if (key.contains("email")) {
-                        flag[0] = 1;
+                        Log.d("Inside Datasnapshot","2");
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        finish();
                     }
                     }
                 }
@@ -424,9 +426,6 @@ public class OTP extends AppCompatActivity implements
             });
         }catch(NullPointerException e){
             e.printStackTrace();
-        }
-        if (flag[0]==1){
-            return false;
         }
 
         return true;

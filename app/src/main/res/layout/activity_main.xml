@@ -5,40 +5,6 @@
     android:layout_height="match_parent"
     tools:context="MainActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:alpha="0.8"
-        android:background="#000"
-        android:foregroundGravity="top">
-
-        <EditText
-            android:id="@+id/findPlace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Select Source"
-            android:onClick="findPlace"
-            android:textColorHint="#FFF" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="65dp"
-        android:alpha="0.8"
-        android:background="#000"
-        android:onClick="findPlace">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Select Destination"
-            android:id="@+id/findp"
-            android:textColorHint="#FFF" />
-    </android.support.design.widget.TextInputLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -54,5 +20,49 @@
             android:layout_alignParentStart="true" />
 
     </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.3"
+        android:background="?android:attr/colorBackground"
+        android:foregroundGravity="top"
+        android:padding="0dp">
+
+        <EditText
+            android:id="@+id/findPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Source"
+            android:onClick="findPlace"
+            android:padding="10dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="#FFF"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="65dp"
+        android:alpha="0.3"
+        android:background="?android:attr/colorBackground"
+        android:onClick="findPlace"
+        android:padding="0dp">
+
+        <EditText
+            android:id="@+id/findp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Destination"
+            android:onClick="findPlace"
+            android:padding="10dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="#FFF"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
 
 </RelativeLayout>

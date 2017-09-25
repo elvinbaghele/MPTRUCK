@@ -15,11 +15,20 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class MainActivity extends AppCompatActivity {
-    EditText e1,e2;
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
+    private EditText e1,e2;
+    private int field;
+    private String name,address;
+    private Double latitude,longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +37,20 @@ public class MainActivity extends AppCompatActivity {
         e2 = (EditText) findViewById(R.id.findp);
         e1.bringToFront();
         e2.bringToFront();
+
     }
 //dasdasd
     public void findPlace(View view) {
-        try {
+        switch(view.getId()) {
+            case R.id.findp: field = 2;
+            break;
+            case R.id.findPlace: field =1;
+            break;
+        }        try {
             Intent intent =
                     new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
                             .build(this);
+
             startActivityForResult(intent, 1);
         } catch (GooglePlayServicesRepairableException e) {
             // TODO: Handle the error.
@@ -51,12 +67,19 @@ public class MainActivity extends AppCompatActivity {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 Log.e("Tag", "Place: " + place.getAddress() + place.getPhoneNumber() + place.getLatLng().latitude);
 
-                Intent intent = new Intent(MainActivity.this, GoogleMapActivity.class);
-                intent.putExtra("latitude",place.getLatLng().latitude);
-                intent.putExtra("longitute",place.getLatLng().longitude);
-                intent.putExtra("name",place.getName());
-                intent.putExtra("address",place.getAddress());
-                startActivity(intent);
+
+                latitude=place.getLatLng().latitude;
+                longitude=place.getLatLng().longitude;
+                name=place.getName().toString();
+                address=place.getAddress().toString();
+                if(field == 1){
+                    e1.setText(name);
+                }else
+                {
+                    e2.setText(name);
+                }
+                SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
+                mapFragment.getMapAsync(this);
 
 
 //                        ((TextView) findViewById(R.id.searched_address)).setText(place.getName() + ",\n" +
@@ -73,6 +96,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void onMapReady(GoogleMap map){
+        LatLng sydney = new LatLng(latitude,longitude);
+
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+        map.addMarker( new MarkerOptions()
+                .title(name)
+                .snippet(address)
+                .position(sydney));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
