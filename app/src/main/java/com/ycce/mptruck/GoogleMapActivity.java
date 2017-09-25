@@ -27,7 +27,7 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
         longitude = intent.getDoubleExtra("longitute",0d);
         title = intent.getStringExtra("name");
         address = intent.getStringExtra("address");
-
+//changes done by sonam thote
 
         //Log.e("place",latlngss);
 
