@@ -53,7 +53,7 @@ public class Activity_WH extends AppCompatActivity {
                     return;
                 }
                 if(height.getText().toString().isEmpty()){
-                    height.setError("Please Enter the approximate weight");
+                    height.setError("Please Enter the approximate height");
                     return;
                 }
                 if(industry.getSelectedItemPosition()<1){
@@ -62,13 +62,19 @@ public class Activity_WH extends AppCompatActivity {
                     t1.show();
                     return;
                 }
-
+                if(btnDate.getText().toString().equalsIgnoreCase("Set Date")){
+                    Toast t1 = Toast.makeText(getApplicationContext(),btnDate.getText().toString()+"",Toast.LENGTH_LONG);
+                    t1.setGravity(Gravity.CENTER,0,0);
+                    t1.show();
+                    return;
+                }
                 Intent i = new Intent(getApplicationContext(),SaveImage.class);
                 Bundle bundle2= new Bundle();
                 bundle2.putString("Weight",weight.getText().toString());
                 bundle2.putString("Height",height.getText().toString());
                 bundle2.putString("Industry",industry.getSelectedItem().toString());
                 bundle2.putString("load_type",load_type);
+                bundle2.putString("date",btnDate.getText().toString());
                 bundle2.putAll(getIntent().getBundleExtra("bundle1"));
                 i.putExtra("bundle2",bundle2);
                 startActivity(i);

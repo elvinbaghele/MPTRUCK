@@ -1,5 +1,6 @@
 package com.ycce.mptruck;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -34,6 +35,7 @@ public class SaveImage extends AppCompatActivity {
     int flag=0;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference,databaseReference1,databaseReference2;
+    private ProgressDialog progressDialog;
     private int order;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class SaveImage extends AppCompatActivity {
         setContentView(R.layout.activity_save_image);
         imageView = (ImageView) findViewById(R.id.profile_image1);
         saveall = (Button) findViewById(R.id.saveall);
+        progressDialog = new ProgressDialog(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference1 = firebaseDatabase.getReference().child("orderno");
         databaseReference1.addValueEventListener(new ValueEventListener() {
@@ -60,6 +63,9 @@ public class SaveImage extends AppCompatActivity {
         saveall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.setMessage("Creating Order");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 if(flag!=1){
                     Toast.makeText(getApplicationContext(),"Pleas Upload Product Image",Toast.LENGTH_LONG).show();
                     return;
@@ -75,11 +81,13 @@ public class SaveImage extends AppCompatActivity {
                 riversRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getApplicationContext(),"Product Photo Uploaded",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Order Created Successfully, You can check the progress in the My Orders",Toast.LENGTH_LONG).show();
                     }
                 });
                 databaseReference2.child("orderno"+order).setValue("");
                 databaseReference1.setValue(order+1);
+                progressDialog.dismiss();
+                finish();
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
