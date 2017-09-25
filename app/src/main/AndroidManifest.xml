@@ -41,7 +41,7 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".Activity_WH" />
-        <activity android:name=".GetDate"></activity>
+        <activity android:name=".SaveImage"></activity>
     </application>
 
 </manifest>

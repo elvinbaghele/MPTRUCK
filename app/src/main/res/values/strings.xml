@@ -79,10 +79,15 @@
     <string-array name="industry">
         <item>Select Industry</item>
         <item>Dont Know</item>
-        <item>Chemical</item>
-        <item>Electrical</item>
-        <item>Industry 1</item>
-        <item>Industry 2</item>
-        <item>Industry 3</item>
+        <item>Industrial Goods</item>
+        <item>Coal and Bulk Cargo</item>
+        <item>Agriculture and Food</item>
+        <item>Construction Material</item>
+        <item>Machinery</item>
+        <item>Electronics</item>
+        <item>Consumer Durables</item>
+        <item>Fertilizers</item>
+        <item>Furniture</item>
+        <item>Steel And Metal Products</item>
     </string-array>
 </resources>

@@ -3,11 +3,6 @@ package com.ycce.mptruck;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -18,8 +13,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.text.Format;
 
 public class Activity_WH extends AppCompatActivity {
     private Spinner industry;
@@ -70,7 +63,7 @@ public class Activity_WH extends AppCompatActivity {
                     return;
                 }
 
-                Intent i = new Intent(getApplicationContext(),GetDate.class);
+                Intent i = new Intent(getApplicationContext(),SaveImage.class);
                 Bundle bundle2= new Bundle();
                 bundle2.putString("Weight",weight.getText().toString());
                 bundle2.putString("Height",height.getText().toString());
