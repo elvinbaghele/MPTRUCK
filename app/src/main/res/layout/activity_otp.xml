@@ -17,6 +17,7 @@
 
         <LinearLayout
             android:id="@+id/signed_in_buttons"
+            android:animateLayoutChanges="true"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
@@ -91,8 +92,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="338dp"
-            android:layout_weight="0.49"
+            android:layout_height="329dp"
             android:padding="50dp">
 
             <TextView

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,8 +28,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
     private EditText e1,e2;
     private int field;
-    private String name,address;
-    private Double latitude,longitude;
+    private String sname,saddress,dname,daddress,name,address;
+    private Double slatitude,slongitude,dlatitude,dlongitude,latitude,longitude;
+    private Button next;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,31 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         e2 = (EditText) findViewById(R.id.findp);
         e1.bringToFront();
         e2.bringToFront();
+        next = (Button) findViewById(R.id.next1);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext(),Activity_WH.class);
+                  try {
+                      Bundle bundle = new Bundle();
+                      bundle.putString("sname", sname);
+                      bundle.putString("saddress", saddress);
+                      bundle.putDouble("slatitude", slatitude);
+                      bundle.putDouble("slongitude", slongitude);
+                      bundle.putString("dname", dname);
+                      bundle.putString("daddress", daddress);
+                      bundle.putDouble("dlatitude", dlatitude);
+                      bundle.putDouble("dlongitude", dlongitude);
+                      i.putExtra("bundle1", bundle);
+                  }catch(NullPointerException e){
+                      e.printStackTrace();
+                  }
+                startActivity(i);
+                finish();
+
+
+            }
+        });
 
     }
 //dasdasd
@@ -73,10 +100,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 name=place.getName().toString();
                 address=place.getAddress().toString();
                 if(field == 1){
-                    e1.setText(name);
+                    slatitude=place.getLatLng().latitude;
+                    slongitude=place.getLatLng().longitude;
+                    sname=place.getName().toString();
+
+                    name="Source :" +name;
+                    saddress=place.getAddress().toString();
+                    e1.setText(sname);
                 }else
                 {
-                    e2.setText(name);
+                    dlatitude=place.getLatLng().latitude;
+                    dlongitude=place.getLatLng().longitude;
+                    dname=place.getName().toString();
+                    name="Destination :" +name;
+                    daddress=place.getAddress().toString();
+                    e2.setText(dname);
                 }
                 SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
                 mapFragment.getMapAsync(this);
@@ -97,14 +135,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onMapReady(GoogleMap map){
-        LatLng sydney = new LatLng(latitude,longitude);
+        LatLng nagpur = new LatLng(latitude,longitude);
 
 
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(nagpur, 16.0f));
         map.addMarker( new MarkerOptions()
                 .title(name)
                 .snippet(address)
-                .position(sydney));
+                .position(nagpur));
     }
 
     @Override

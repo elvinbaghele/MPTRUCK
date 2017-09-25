@@ -391,16 +391,19 @@ public class OTP extends AppCompatActivity implements
             //mStatusText.setText(R.string.signed_out);;
         } else {
             // Signed in
+
               if(checkInDatabase(user)) {
                   mPhoneNumberViews.setVisibility(View.GONE);
                   mSignedInViews.setVisibility(View.VISIBLE);
               }
+
             //mStatusText.setText(R.string.signed_in);
             //mDetailText.setText(getString(R.string.firebase_status_fmt, user.getUid()));
         }
     }
 
     public boolean checkInDatabase(FirebaseUser user) {
+        dialog.setMessage("Please wit while we are initializing..");
 
         try {
             databaseReference1 = firebaseDatabase.getReference().child("user").child(user.getUid());
@@ -413,6 +416,7 @@ public class OTP extends AppCompatActivity implements
                      Set<String> key = map.keySet();
                     if (key.contains("email")) {
                         Log.d("Inside Datasnapshot","2");
+                        dialog.dismiss();
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         finish();
                     }
@@ -427,7 +431,7 @@ public class OTP extends AppCompatActivity implements
         }catch(NullPointerException e){
             e.printStackTrace();
         }
-
+        dialog.dismiss();
         return true;
     }
 
@@ -499,6 +503,7 @@ public class OTP extends AppCompatActivity implements
                 break;
             case R.id.sign_out_button:
                 signOut();
+                finish();
                 break;
             case R.id.profile_image:
                 Intent intent = new Intent();
