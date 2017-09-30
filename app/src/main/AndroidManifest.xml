@@ -42,6 +42,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Activity_WH" />
         <activity android:name=".SaveImage"></activity>
+        <activity android:name=".TabActivity" />
     </application>
 
 </manifest>

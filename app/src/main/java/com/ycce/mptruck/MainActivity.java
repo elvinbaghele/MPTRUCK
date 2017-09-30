@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (item.getItemId())
         {
             case R.id.action_history:
-                Toast.makeText(this,"Coming Soon",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,TabActivity.class));
                 break;
             case R.id.action_profile:
                 Toast.makeText(this,"Coming Soon",Toast.LENGTH_SHORT).show();

@@ -58,19 +58,19 @@ public class SaveImage extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getReference().child("saved");
+        databaseReference = firebaseDatabase.getReference().child("orders");
         databaseReference2 = firebaseDatabase.getReference().child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("saved");
         saveall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressDialog.setMessage("Creating Order");
                 progressDialog.setCancelable(false);
-                progressDialog.show();
+
                 if(flag!=1){
                     Toast.makeText(getApplicationContext(),"Pleas Upload Product Image",Toast.LENGTH_LONG).show();
                     return;
                 }
-
+                progressDialog.show();
                 Bundle b = getIntent().getBundleExtra("bundle2");
                 Set<String> key = b.keySet();
                 for(String keys:key){

@@ -105,9 +105,9 @@ public class OTP extends AppCompatActivity implements
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
+
         //assigning Progress Dialog
         dialog = new ProgressDialog(this);
-
         // Assign views
         mPhoneNumberViews = (ViewGroup) findViewById(R.id.phone_auth_fields);
         mSignedInViews = (ViewGroup) findViewById(R.id.signed_in_buttons);
@@ -403,7 +403,8 @@ public class OTP extends AppCompatActivity implements
     }
 
     public boolean checkInDatabase(FirebaseUser user) {
-        dialog.setMessage("Please wit while we are initializing..");
+        dialog.setMessage("Please wait while we are initializing..");
+        dialog.show();
 
         try {
             databaseReference1 = firebaseDatabase.getReference().child("user").child(user.getUid());
