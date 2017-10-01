@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:background="#ffe11b"
+        android:layout_width="320dp"
+        android:padding="3dp">
+
+        <TextView
+            android:text="TextView"
+            android:layout_height="50dp"
+            android:id="@+id/news_head"
+            android:gravity="left|center"
+            android:layout_width="293dp"
+            android:padding="2dp"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:layout_weight="1.53" />
+
+        <TextView
+            android:id="@+id/des"
+            android:layout_width="293dp"
+            android:layout_height="70dp"
+            android:layout_weight="2.23"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:padding="2dp"
+            android:text="TextView" />
+
+        <TextView
+            android:text="TextView"
+            android:id="@+id/name"
+            android:layout_height="wrap_content"
+            android:layout_width="293dp"
+            android:padding="2dp"
+            android:background="@color/common_google_signin_btn_text_light_disabled" />
+
+        <Button
+            android:text="Respond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button4"
+            android:layout_weight="1"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>
