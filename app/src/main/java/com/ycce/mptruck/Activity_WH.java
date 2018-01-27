@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.Calendar;
+
 public class Activity_WH extends AppCompatActivity {
     private Spinner industry;
     private ToggleButton fp;
@@ -68,6 +70,7 @@ public class Activity_WH extends AppCompatActivity {
                     t1.show();
                     return;
                 }
+
                 Intent i = new Intent(getApplicationContext(),SaveImage.class);
                 Bundle bundle2= new Bundle();
                 bundle2.putString("Weight",weight.getText().toString());
@@ -92,40 +95,35 @@ public class Activity_WH extends AppCompatActivity {
 
     }
     protected Dialog onCreateDialog(int id) {
-
         switch (id) {
 
             case DATE_DIALOG_ID:
-
+                Calendar c = Calendar.getInstance();
                 // set date picker as current date
-
-                return new DatePickerDialog(this, datePickerListener, year, month,day);
-
+               year = c.get(Calendar.YEAR);
+                month = c.get(Calendar.MONTH);
+                day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(this, datePickerListener, year, month,day);
+                datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                return  datePickerDialog;
         }
-
         return null;
-
     }
 
     private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
 
         // when dialog box is closed, below method will be called.
-
         public void onDateSet(DatePicker view, int selectedYear,int selectedMonth, int selectedDay) {
 
             year = selectedYear;
-           month = selectedMonth;
-
+            month = selectedMonth;
             day = selectedDay;
 
             // set selected date into Text View
-
-            btnDate.setText(new StringBuilder().append(month + 1)
-
-                            .append("-").append(day).append("-").append(year).append(" "));
+            btnDate.setText(new StringBuilder().append(day)
+                    .append("-").append(month + 1).append("-").append(year).append(" "));
 
             // set selected date into Date Picker
-
             //date_picker.init(year, month, day, null);
 
         }

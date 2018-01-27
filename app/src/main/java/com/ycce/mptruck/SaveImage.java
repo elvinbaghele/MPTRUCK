@@ -46,6 +46,8 @@ public class SaveImage extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference1 = firebaseDatabase.getReference().child("orderno");
+
+        // for two or more apps working at the same time this order no may be same , so its the problem.
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,6 +78,8 @@ public class SaveImage extends AppCompatActivity {
                 for(String keys:key){
                        databaseReference.child("orderno"+order).child(keys).setValue(b.get(keys));
                 }
+                databaseReference.child("orderno"+order).child("driver_count").setValue(0);
+                databaseReference.child("orderno"+order).child("order").setValue(order);
                 FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
                 StorageReference riversRef = firebaseStorage.getReference(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("orderno"+order);
                 riversRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -86,6 +90,20 @@ public class SaveImage extends AppCompatActivity {
                 });
                 databaseReference2.child("orderno"+order).setValue("");
                 databaseReference1.setValue(order+1);
+
+                firebaseDatabase.getReference().child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("saved_count").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                       // Log.d("Number of saved orders", (String) dataSnapshot.getValue());
+                        firebaseDatabase.getReference().child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("saved_count").setValue((long)dataSnapshot.getValue()+1);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                Toast.makeText(getApplicationContext(),"Order placed successfully",Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
                 finish();
             }

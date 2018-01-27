@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,10 +37,9 @@ public class F1 extends Fragment implements View.OnClickListener {
     ArrayList<HashMap<String,String>> list = null;
     SavedAdapter savedAdapter;
 
-    EditText news_name,news_headline,news_description,news_source;
+    //EditText news_name,news_headline,news_description,news_source;
     long count;
-    FirebaseDatabase database;
-    DatabaseReference counterRef,user;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,49 +51,60 @@ public class F1 extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        recyclerView= (RecyclerView) getActivity().findViewById(R.id.news);
-/*
-        database = FirebaseDatabase.getInstance();
-        counterRef = database.getReferenceFromUrl("https://ngo-test-6b3e0.firebaseio.com/news_count");
+        recyclerView= (RecyclerView) getActivity().findViewById(R.id.orders_list);
 
-        counterRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                count = (Long) dataSnapshot.getValue();
-                Log.d("aaaaaa","change"+count);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-       */
-        /*final FirebaseDatabase database=FirebaseDatabase.getInstance();
-        final DatabaseReference newsRef=database.getReferenceFromUrl("https://ngo-test-6b3e0.firebaseio.com/news");
-        newsRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                list=new ArrayList<>();
-                savedAdapter =new SavedAdapter(getContext(),list);
-                recyclerView.setAdapter(savedAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                ArrayList<HashMap<String,String>> list1= (ArrayList<HashMap<String, String>>) dataSnapshot.getValue();
-
-                    for (int i = (list1.size() - 1); i > 0; i--) {
-                        HashMap<String, String> hashMap = list1.get(i);
-                        list.add(hashMap);
-                    }
-                    savedAdapter.setData(list);
+       final DatabaseReference savedReference = FirebaseDatabase.getInstance().getReference().child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+       savedReference.child("saved_count").addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+               long saved_count= (long) dataSnapshot.getValue();
+               if(saved_count > 0){
+                   savedReference.child("saved").addValueEventListener(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(DataSnapshot dataSnapshot) {
+                           HashMap<String,String> list1= (HashMap<String, String>) dataSnapshot.getValue();
+                           list=new ArrayList<>();
+                           savedAdapter =new SavedAdapter(getContext(),list);
+                           recyclerView.setAdapter(savedAdapter);
+                           recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                           for(String key: list1.keySet()){
+                               DatabaseReference orders = FirebaseDatabase.getInstance().getReference().child("orders").child(key);
+                               orders.addValueEventListener(new ValueEventListener() {
+                                   @Override
+                                   public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-            }
+                                       HashMap<String,String>list2= (HashMap<String, String>) dataSnapshot.getValue();
+                                       Toast.makeText(getContext(),"status : "+ String.valueOf(list2.get("status")),Toast.LENGTH_LONG).show();
+                                       //adding data of an order as hashMap to the arraylist, which is passed to the SavedAdapter
+                                       if(String.valueOf(list2.get("status")).equals("0"))
+                                        list.add(list2);
+                                       savedAdapter.setData(list);
+                                   }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                                   @Override
+                                   public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });*/
+                                   }
+                               });
+                           }
+                       }
+
+                       @Override
+                       public void onCancelled(DatabaseError databaseError) {
+
+                       }
+                   });
+               }else{
+                   // Display no order placed
+               }
+           }
+
+           @Override
+           public void onCancelled(DatabaseError databaseError) {
+
+           }
+       });
     }
 
     @Override

@@ -7,17 +7,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="demo.ngo.fragment.F1">
+    tools:context="">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/el"
+
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/news"
+            android:id="@+id/orders_list"
             android:layout_width="match_parent"
 
             android:layout_height="match_parent"

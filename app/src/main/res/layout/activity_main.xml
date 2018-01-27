@@ -24,52 +24,32 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+
+
     </RelativeLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <TextView
+        android:id="@+id/findPlace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.3"
-        android:background="?android:attr/colorBackground"
-        android:foregroundGravity="top"
-        android:padding="0dp">
-
-        <EditText
-            android:id="@+id/findPlace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Select Source"
-            android:onClick="findPlace"
-            android:padding="10dp"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="#FFF"
-            android:textSize="16sp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="65dp"
-        android:alpha="0.3"
-        android:background="?android:attr/colorBackground"
+        android:layout_marginBottom="130dp"
         android:onClick="findPlace"
-        android:padding="0dp">
+        android:padding="10dp"
+        android:text="Select Source" />
 
-        <EditText
-            android:id="@+id/findp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Select Destination"
-            android:onClick="findPlace"
-            android:padding="10dp"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="#FFF"
-            android:textSize="16sp" />
-
-    </android.support.design.widget.TextInputLayout>
+    <TextView
+        android:id="@+id/findp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/findPlace"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:onClick="findPlace"
+        android:padding="10dp"
+        android:text="Select Destination" />
 
     <Button
         android:id="@+id/next1"

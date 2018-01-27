@@ -31,16 +31,16 @@ public class TabAdapter extends FragmentStatePagerAdapter
         switch (position)
         {
             case 0:
-                return new F1();
+                return new F1();//saved
 
             case 1:
-                return new F2();
+                return new F2(); //running
 
             case 2:
-                return new F3();
+                return new F3(); //completed
 
             case 3:
-                return new F4();
+                return new F4(); //canceled
 
         }
         return null;

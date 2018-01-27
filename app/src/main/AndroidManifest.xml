@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -41,8 +42,11 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".Activity_WH" />
-        <activity android:name=".SaveImage"></activity>
+        <activity android:name=".SaveImage" />
         <activity android:name=".TabActivity" />
+        <activity android:name=".Drivers_list"></activity>
+        <activity android:name=".ScrollingActivity" />
+        <activity android:name=".AppCompatPreferenceActivity" />
     </application>
 
 </manifest>

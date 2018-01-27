@@ -20,7 +20,7 @@
             android:id="@+id/weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Weight" />
+            android:hint="Weight(kg)" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -36,7 +36,7 @@
             android:id="@+id/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Height" />
+            android:hint="Height(ft)" />
     </android.support.design.widget.TextInputLayout>
 
     <ToggleButton

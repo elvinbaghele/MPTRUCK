@@ -3,6 +3,7 @@ package com.ycce.mptruck.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ycce.mptruck.R;
@@ -13,15 +14,17 @@ import com.ycce.mptruck.R;
 
 public class SavedHolder extends RecyclerView.ViewHolder
 {
-    TextView head,desc,name;
-    Button button;
+   TextView orderno,source,destination,textView6,count_drivers;
+   ImageView product_image;
     public SavedHolder(View itemView)
     {
         super(itemView);
-        head= (TextView) itemView.findViewById(R.id.new_news_head);
-        desc= (TextView) itemView.findViewById(R.id.desc);
-        name= (TextView) itemView.findViewById(R.id.new_news_name);
-        //button= (Button) itemView.findViewById(R.id.button4);
+        orderno = (TextView) itemView.findViewById(R.id.orderno);
+        source = (TextView) itemView.findViewById(R.id.source);
+        destination = (TextView) itemView.findViewById(R.id.destination);
+        textView6 = (TextView) itemView.findViewById(R.id.textView6);
+        count_drivers = (TextView) itemView.findViewById(R.id.count_drivers);
+        product_image = (ImageView) itemView.findViewById(R.id.product_image);
 
     }
 }

@@ -32,7 +32,7 @@ public class CancleAdapter extends RecyclerView.Adapter<SavedHolder> {
     }
     @Override
     public SavedHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new SavedHolder(LayoutInflater.from(context).inflate(R.layout.custom_layout_news,null));
+        return new SavedHolder(LayoutInflater.from(context).inflate(R.layout.order_layout,null));
     }
 
     @Override
